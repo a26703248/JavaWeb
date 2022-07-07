@@ -4,14 +4,33 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <!-- url mapping java class start -->
+
+  <servlet>
+    <servlet-name>lotto</servlet-name>
+    <servlet-class>servlet.LottoServlet</servlet-class>
+  </servlet>
+
   <servlet>
     <servlet-name>hello</servlet-name>
     <servlet-class>servlet.HelloServlet</servlet-class>
   </servlet>
 
+  <!-- url mapping java class end -->
+
+  <!-- url mapping class start -->
+
+  <servlet-mapping>
+    <servlet-name>lotto</servlet-name>
+    <url-pattern>/lotto</url-pattern>
+  </servlet-mapping>
+
   <servlet-mapping>
     <servlet-name>hello</servlet-name>
     <url-pattern>/hello</url-pattern>
   </servlet-mapping>
+
+  <!-- url mapping class end -->
 
 </web-app>
