@@ -17,9 +17,31 @@
     <servlet-class>servlet.HelloServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>demo</servlet-name>
+    <servlet-class>servlet.Demo</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>today</servlet-name>
+    <servlet-class>servlet.TodayServlet</servlet-class>
+  </servlet>
+
   <!-- url mapping java class end -->
 
   <!-- url mapping class start -->
+
+  <servlet-mapping>
+    <!-- 對應 servlet name -->
+    <servlet-name>hello</servlet-name>
+    <!-- 網址 -->
+    <url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>demo</servlet-name>
+    <url-pattern>/demo</url-pattern>
+  </servlet-mapping>
 
   <servlet-mapping>
     <servlet-name>lotto</servlet-name>
@@ -27,9 +49,20 @@
   </servlet-mapping>
 
   <servlet-mapping>
-    <servlet-name>hello</servlet-name>
-    <url-pattern>/hello</url-pattern>
+    <servlet-name>today</servlet-name>
+    <url-pattern>/today</url-pattern>
   </servlet-mapping>
+
+  <!-- <servlet-mapping>
+    <servlet-name>lotto</servlet-name>
+    <url-pattern>/lotto/hello</url-pattern>
+  </servlet-mapping> -->
+
+  <!-- 底下所有都為同一個服務 -->
+  <!-- <servlet-mapping>
+    <servlet-name>lotto</servlet-name>
+    <url-pattern>/lotto/*</url-pattern>
+  </servlet-mapping> -->
 
   <!-- url mapping class end -->
 
