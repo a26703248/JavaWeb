@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+// get 和 post 都能帶參數
+// get 適用網址方式帶參數最多只能放8K
+// post 是用 body 方式帶入資料大小2G
 // HttpServlet http 型 servlet 代表是一個 http web服務
 public class TodayServlet extends HttpServlet {
 

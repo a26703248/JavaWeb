@@ -1,4 +1,7 @@
+servlet/WelcomeServlet.class
+servlet/AlphaServlet.class
 servlet/HelloServlet.class
 servlet/Demo.class
 servlet/TodayServlet.class
 servlet/LottoServlet.class
+servlet/EmployeeServlet.class

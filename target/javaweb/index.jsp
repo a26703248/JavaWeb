@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=utf-8"%>
 <html>
 
 <head>
@@ -6,6 +7,7 @@
     content="text/html;charset=UTF-8"
   >
   <title>Java Web</title>
+  我
 </head>
 
 <body>
