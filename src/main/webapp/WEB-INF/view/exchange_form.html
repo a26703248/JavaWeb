@@ -8,6 +8,16 @@
     rel="stylesheet"
     href="https://unpkg.com/purecss@2.1.0/build/pure-min.css"
   />
+  <script type="text/javascript">
+    function change(){
+      let fromValue = document.getElementById("form").value;
+      let fromTo = document.getElementById("to").value;
+
+      document.getElementById("form").value = fromTo;
+      document.getElementById("to").value = fromValue;
+      return;
+    }
+  </script>
 </head>
 
 <body style="padding: 15px">
@@ -26,7 +36,10 @@
       />
       <p />
       換匯:
-      <select name="from">
+      <select
+        name="form"
+        id="form"
+      >
         <option
           value="TWD"
           selected
@@ -36,8 +49,15 @@
         <option value="CNY">人民幣</option>
         <option value="EUR">歐元</option>
       </select>
-      轉
-      <select name="to">
+      <span
+        onclick="change()"
+        style="cursor: pointer;"
+        title="按我一下可以轉換"
+      >轉</span>
+      <select
+        name="to"
+        id="to"
+      >
         <option
           value="TWD"
           selected

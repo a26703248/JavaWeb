@@ -10,9 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import mvc_entity.Exchange;
+import mvc_service.ExchangeService;
 
 @WebServlet("/mvc/controller/exchange")
 public class ExchangeServlet extends HttpServlet {
+  private ExchangeService service = new ExchangeService();
+
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    // 今日公休
+    // resp.getWriter().print("今日公休");
+
+    RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/exchange_form.html");
+    rd.forward(req, resp);
+  }
 
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,8 +37,8 @@ public class ExchangeServlet extends HttpServlet {
     String from = formFrom;
     String to = formTo;
 
-    // 建立 Exchange 物件
-    Exchange exchange = new Exchange();
+    // 建立 Exchange 物件並呼叫 service
+    Exchange exchange = service.getExchange(amount, from, to);
     exchange.setAmount(amount);
     exchange.setFrom(from);
     exchange.setTo(to);
@@ -35,6 +46,8 @@ public class ExchangeServlet extends HttpServlet {
     // 建立分派器
     RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/exchange_result.jsp");
     req.setAttribute("exchange", exchange);
+    req.setAttribute("exchanges", service.queryAllExchanges());
     rd.forward(req, resp);
   }
+
 }
