@@ -1,7 +1,11 @@
+mvc_service/ExchangeService.class
 servlet/WelcomeServlet.class
 servlet/AlphaServlet.class
+mvc_repository/ExchangeDao.class
+mvc_entity/Exchange.class
 servlet/HelloServlet.class
 servlet/Demo.class
+mvc_controller/ExchangeServlet.class
 servlet/TodayServlet.class
 servlet/LottoServlet.class
 servlet/EmployeeServlet.class

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>匯率換算</title>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/purecss@2.1.0/build/pure-min.css"
+  />
+</head>
+
+<body style="padding: 15px">
+  <form
+    method="post"
+    action="/javaweb/mvc/controller/exchange"
+    class="pure-form"
+  >
+    <fieldset>
+      <legend>換匯表單</legend>
+      金額:
+      <input
+        type="number"
+        placeholder="請輸入金額"
+        name="amount"
+      />
+      <p />
+      換匯:
+      <select name="from">
+        <option
+          value="TWD"
+          selected
+        >台幣</option>
+        <option value="USD">美金</option>
+        <option value="JPY">日幣</option>
+        <option value="CNY">人民幣</option>
+        <option value="EUR">歐元</option>
+      </select>
+      轉
+      <select name="to">
+        <option
+          value="TWD"
+          selected
+        >台幣</option>
+        <option value="USD">美金</option>
+        <option value="JPY">日幣</option>
+        <option value="CNY">人民幣</option>
+        <option value="EUR">歐元</option>
+      </select>
+      <p />
+      <button
+        type="submit"
+        class="pure-button pure-button-primary"
+      >
+        送出
+      </button>
+      <button
+        type="reset"
+        class="pure-button pure-button-primary"
+      >
+        重填
+      </button>
+    </fieldset>
+  </form>
+</body>
+
+</html>

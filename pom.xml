@@ -52,6 +52,13 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- yahoofinance -->
+    <dependency>
+      <groupId>com.yahoofinance-api</groupId>
+      <artifactId>YahooFinanceAPI</artifactId>
+      <version>3.17.0</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -90,5 +97,6 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
   </build>
 </project>
