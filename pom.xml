@@ -59,6 +59,14 @@
       <version>3.17.0</version>
     </dependency>
 
+    <!-- JSTL 標籤 -->
+    <dependency>
+      <groupId>org.glassfish.web</groupId>
+      <artifactId>javax.servlet.jsp.jstl</artifactId>
+      <version>1.2.4</version>
+    </dependency>
+
+
   </dependencies>
 
   <build>
