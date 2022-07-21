@@ -1,4 +1,5 @@
 servlet/AlphaServlet.class
+servlet/getSessionIDServlet.class
 mvc/mvc_service/ExchangeService.class
 servlet/Demo.class
 filter/MyResponse.class

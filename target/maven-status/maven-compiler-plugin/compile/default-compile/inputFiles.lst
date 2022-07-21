@@ -8,6 +8,7 @@
 /home/a0909007892/javaweb/src/main/java/filter/LoginReportFilter.java
 /home/a0909007892/javaweb/src/main/java/servlet/WelcomeServlet.java
 /home/a0909007892/javaweb/src/main/java/filter/MyResponse.java
+/home/a0909007892/javaweb/src/main/java/servlet/getSessionIDServlet.java
 /home/a0909007892/javaweb/src/main/java/mvc/mvc_entity/Exchange.java
 /home/a0909007892/javaweb/src/main/java/filter/UTF8Filter.java
 /home/a0909007892/javaweb/src/main/java/servlet/LottoServlet.java
