@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/coffeeSession")
+import bean.Coffee;
+
+@WebServlet("/coffee/session")
 public class CoffeeSessionServlet extends HttpServlet{
 
   @Override
@@ -17,10 +19,15 @@ public class CoffeeSessionServlet extends HttpServlet{
     // getSession(false) 代表使用已存在 session
     HttpSession session = req.getSession(false);
     if(session != null){
-      String amount = session.getAttribute("amount").toString();
-      resp.getWriter().print("Coffee amount" + amount);
+      if(session.getAttribute("coffee") != null && session.getAttribute("coffee") instanceof Coffee){
+        Coffee coffee = (Coffee) session.getAttribute("coffee");
+        resp.getWriter().print("Coffee Amount=" + coffee.getAmount() + "\n");
+      }else{
+        resp.getWriter().print("Coffee Amount: None");
+      }
+      resp.getWriter().print("session id=" + session.getId());
     }else{
-      resp.getWriter().print("Coffee amount: None");
+      resp.getWriter().print("Coffee Amount: None");
     }
   }
 
@@ -28,7 +35,10 @@ public class CoffeeSessionServlet extends HttpServlet{
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     String amount = req.getParameter("amount");
     HttpSession session = req.getSession(true);
-    session.setAttribute("amount", amount);
-    resp.getWriter().print("Buy Coffee OK!");
+    Coffee coffee = new Coffee();
+    coffee.setAmount(Integer.valueOf(amount));
+    session.setAttribute("coffee", coffee);
+    resp.getWriter().print("Buy Coffee OK!\n");
+    resp.getWriter().print("session id=" + session.getId());
   }
 }

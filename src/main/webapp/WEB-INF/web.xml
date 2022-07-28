@@ -9,8 +9,9 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <!-- 不寫預設30分鐘 -->
+  <!-- 設定 0 為永源有效 -->
   <session-config>
-    <session-timeout>1</session-timeout>
+    <session-timeout>10</session-timeout>
   </session-config>
 
   <!-- url mapping java class start -->
