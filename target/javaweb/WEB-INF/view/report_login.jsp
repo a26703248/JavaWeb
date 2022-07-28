@@ -14,6 +14,7 @@
       href="https://unpkg.com/purecss@2.1.0/build/pure-min.css" />
     <script type="text/javascript">
       function changeAuthCodeImage() {
+        // 在網址後方加上變動參數防止 cache 殘留問題，讓瀏覽器以為是新的網址強制做更新
         document.getElementById("authcodeimage").src = "/javaweb/captcha/authcodeimage?i=" + Math.random();
       }
     </script>

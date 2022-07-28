@@ -32,7 +32,7 @@ public class MyWebSessionAttributeListener implements HttpSessionAttributeListen
 
   private void printInfo(HttpSession session, String message){
     System.out.println(message + ": " + session.getAttributeNames() );
-    Enumeration<Object> names = session.getAttributeNames();
+    Enumeration<String> names = session.getAttributeNames();
     while(names.hasMoreElements()) {
       String name = (String) names.nextElement();
       System.out.printf("%s = %s\n", name, session.getAttribute(name));

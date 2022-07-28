@@ -13,6 +13,7 @@ report/AnnualReport.class
 mvc/mvc_controller/ExchangeServlet.class
 filter/UTF8Filter.class
 bean/Coffee.class
+upload/UploadServlet.class
 servlet/Demo.class
 servlet/EmployeeServlet.class
 mvc/mvc_entity/Exchange.class

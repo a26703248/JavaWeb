@@ -11,8 +11,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
 // @WebFilter(urlPatterns={"/report/daily", "/report/monthly"})
-@WebFilter(urlPatterns={"/*"})
 // @WebFilter(urlPatterns={"/report/daily"})
+// @WebFilter(urlPatterns={"/servlet/upload"})
+@WebFilter(urlPatterns={"/*"})
 public class UTF8Filter implements Filter{
 
   @Override
