@@ -3,8 +3,11 @@ package JDBC.repositery;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 import JDBC.empty.User;
 
@@ -72,12 +75,133 @@ public class UserDao {
     return rowCount;
   }
 
+  // 修改 username 資料列
+  public int updateUsername(Integer id, String username){
+    int rowCount = 0;
+    String sql = "update user set username=? where id=?";
+    try (
+      PreparedStatement stmt = getConnection().prepareStatement(sql);
+    ) {
+      stmt.setString(1, username);
+      stmt.setInt(2, id);
+      rowCount = stmt.executeUpdate();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return rowCount;
+  }
+
+  // 修改 password 資料列
+  public int updatePassword(Integer id, String password){
+    int rowCount = 0;
+    String sql = "update user set password=? where id=?";
+    try (
+      PreparedStatement stmt = getConnection().prepareStatement(sql);
+    ) {
+      stmt.setString(1, password);
+      stmt.setInt(2, id);
+      rowCount = stmt.executeUpdate();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return rowCount;
+  }
+
+  // 修改 user 資料列
+  public int updateUser(Integer id, User user){
+    int rowCount = 0;
+    String sql = "update user set username=?, password=? where id=?";
+    try (
+      PreparedStatement stmt = getConnection().prepareStatement(sql);
+    ) {
+      stmt.setString(1, user.getUsername());
+      stmt.setString(2, user.getPassword());
+      stmt.setInt(3, id);
+      rowCount = stmt.executeUpdate();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return rowCount;
+  }
+
+  // 刪除 user 資料
+  public int deleteUser(Integer id){
+    int rowCount = 0;
+    String sql = "delete from user where id=?";
+    try (
+      PreparedStatement stmt = getConnection().prepareStatement(sql);
+    ) {
+      stmt.setInt(1, id);
+      rowCount = stmt.executeUpdate();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return rowCount;
+  }
+
+  // get user by id 資料列
+  public User getUserById(Integer id){
+    String sql = "select * from user where id=?";
+    User user = null;
+    try (
+      PreparedStatement stmt = getConnection().prepareStatement(sql);
+    ) {
+      stmt.setInt(1, id);
+      ResultSet res = stmt.executeQuery();
+      if(res.next()){
+        user = new User();
+        user.setId(res.getInt("id"));
+        user.setUsername(res.getString("username"));
+        user.setPassword(res.getString("password"));
+        user.setCreatetime(res.getDate("createtime"));
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return user;
+  }
+
+  public List<User> getUsers(){
+    String sql = "select * from user";
+    List<User> users = new ArrayList<>();
+    try (
+      PreparedStatement stmt = getConnection().prepareStatement(sql);
+    ) {
+      ResultSet res = stmt.executeQuery();
+      while(res.next()){
+        User user = new User();
+        user.setId(res.getInt("id"));
+        user.setUsername(res.getString("username"));
+        user.setPassword(res.getString("password"));
+        user.setCreatetime(res.getDate("createtime"));
+        users.add(user);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return users;
+  }
+
   public static void main(String[] args) throws Exception {
+    // 1. create db
     // new UserDao().createDB();
+    // 2. create table
     // new UserDao().createTable();
-    String password1 = "1234";
-    new UserDao().add(new User("john", Base64.getEncoder().encodeToString(password1.getBytes())));
-    String password2 = "1234";
-    new UserDao().add(new User("mary", Base64.getEncoder().encodeToString(password2.getBytes())));
+    // 3. insert data
+    // String password1 = "1234";
+    // new UserDao().add(new User("john", Base64.getEncoder().encodeToString(password1.getBytes())));
+    // String password2 = "1234";
+    // new UserDao().add(new User("mary", Base64.getEncoder().encodeToString(password2.getBytes())));
+    // int row = new UserDao().updateUsername(1, "john");
+    // int row = new UserDao().updatePassword(2, Base64.getEncoder().encodeToString("ABCD".getBytes()));
+    // int row = new UserDao().updateUser(2, new User("mary", Base64.getEncoder().encodeToString("5678".getBytes())));
+    // int row = new UserDao().deleteUser(2);
+    // System.out.println(row);
+    // User user = new UserDao().getUserById(1);
+    // System.out.println(user.toString());
+    List<User> users = new UserDao().getUsers();
+    for (User user : users) {
+      System.out.println(user.toString());
+    }
   }
 }
