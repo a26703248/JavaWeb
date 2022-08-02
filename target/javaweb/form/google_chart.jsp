@@ -33,7 +33,7 @@
         var chart4 = new google.visualization.LineChart(document.getElementById('linechart'));
         chart4.draw(data, options);
 
-        var chart5 = new google.visualization.TableChart(document.getElementById('tablechart'));
+        var chart5 = new google.visualization.Table(document.getElementById('tablechart'));
         chart5.draw(data, {showRowNumber:true, weight:'100%', height:'100%'});
       }
     </script>
