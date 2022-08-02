@@ -5,6 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "Launch UserDao",
+      "request": "launch",
+      "mainClass": "JDBC.repositery.UserDao",
+      "projectName": "javaweb"
+    },
+    {
       "type": "pwa-chrome",
       "request": "launch",
       "name": "Open pom.xml",
