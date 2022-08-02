@@ -1,0 +1,28 @@
+package JDBC.controller;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import JDBC.service.UserService;
+
+@WebServlet("/user/delete")
+public class DeleteUserServlet extends HttpServlet{
+  private UserService userService = new UserService();
+
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    Integer id = Integer.valueOf(req.getParameter("id"));
+    int rowCount = userService.delete(id);
+
+    RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/user/success");
+    req.setAttribute("action", "update");
+    req.setAttribute("rowCount", rowCount);
+    rd.forward(req, resp);
+  }
+}
