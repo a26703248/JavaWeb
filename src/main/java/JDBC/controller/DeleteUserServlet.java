@@ -20,7 +20,7 @@ public class DeleteUserServlet extends HttpServlet{
     Integer id = Integer.valueOf(req.getParameter("id"));
     int rowCount = userService.delete(id);
 
-    RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/user/success");
+    RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/user/success.jsp");
     req.setAttribute("action", "update");
     req.setAttribute("rowCount", rowCount);
     rd.forward(req, resp);

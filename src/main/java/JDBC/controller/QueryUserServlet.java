@@ -13,12 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import JDBC.empty.User;
 import JDBC.service.UserService;
 
-@WebServlet(value={ "/user/query", "user"})
+@WebServlet(value={ "/user/query", "/users"})
 public class QueryUserServlet extends HttpServlet{
   private UserService userService = new UserService();
 
   @Override
-  protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     List<User> users = userService.getUsers();
 
     RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/user/index.jsp");

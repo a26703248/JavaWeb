@@ -22,7 +22,7 @@ public class UpdateUserServlet extends HttpServlet{
     String password = req.getParameter("password");
     int rowCount = userService.update(id, username, password);
 
-    RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/user/success");
+    RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/user/success.jsp");
     req.setAttribute("action", "update");
     req.setAttribute("rowCount", rowCount);
     rd.forward(req, resp);

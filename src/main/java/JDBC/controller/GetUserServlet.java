@@ -21,7 +21,7 @@ public class GetUserServlet extends HttpServlet{
     Integer id = Integer.valueOf(req.getParameter("id"));
     User user = userService.getUserById(id);
 
-    RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/user/update");
+    RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/user/update.jsp");
     req.setAttribute("action", "get");
     req.setAttribute("user", user);
     rd.forward(req, resp);
