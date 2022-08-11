@@ -25,4 +25,5 @@ public class DeleteUserServlet extends HttpServlet{
     req.setAttribute("rowCount", rowCount);
     rd.forward(req, resp);
   }
+
 }

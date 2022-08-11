@@ -1,4 +1,5 @@
 /home/a0909007892/javaweb/src/main/java/JDBC/service/UserService.java
+/home/a0909007892/javaweb/src/main/java/rest_servlet/PersonServlet.java
 /home/a0909007892/javaweb/src/main/java/report/AnnualReport.java
 /home/a0909007892/javaweb/src/main/java/listener/MyWebSessionAttributeListener.java
 /home/a0909007892/javaweb/src/main/java/JDBC/controller/AddUserServlet.java
@@ -14,8 +15,11 @@
 /home/a0909007892/javaweb/src/main/java/report/MonthlyReport.java
 /home/a0909007892/javaweb/src/main/java/servlet/EmployeeServlet.java
 /home/a0909007892/javaweb/src/main/java/servlet/HelloServlet.java
+/home/a0909007892/javaweb/src/main/java/jpa/servlet/JPAQueryPeronServlet.java
 /home/a0909007892/javaweb/src/main/java/mvc/mvc_repository/ExchangeDao.java
+/home/a0909007892/javaweb/src/main/java/jpa/service/JPAService.java
 /home/a0909007892/javaweb/src/main/java/bean/Coffee.java
+/home/a0909007892/javaweb/src/main/java/jpa/servlet/JPABaseServlet.java
 /home/a0909007892/javaweb/src/main/java/JDBC/controller/UpdateUserServlet.java
 /home/a0909007892/javaweb/src/main/java/mvc/mvc_controller/ExchangeServlet.java
 /home/a0909007892/javaweb/src/main/java/mvc/mvc_service/ExchangeService.java
@@ -24,11 +28,13 @@
 /home/a0909007892/javaweb/src/main/java/JDBC/controller/QueryUserServlet.java
 /home/a0909007892/javaweb/src/main/java/servlet/TodayServlet.java
 /home/a0909007892/javaweb/src/main/java/servlet/WelcomeServlet.java
+/home/a0909007892/javaweb/src/main/java/jpa/servlet/JPAAddPersonServlet.java
 /home/a0909007892/javaweb/src/main/java/mvc/mvc_entity/Exchange.java
 /home/a0909007892/javaweb/src/main/java/filter/UTF8Filter.java
 /home/a0909007892/javaweb/src/main/java/servlet/LottoServlet.java
 /home/a0909007892/javaweb/src/main/java/filter/WatermarkFilter.java
 /home/a0909007892/javaweb/src/main/java/captcha/AuthImageServlet.java
+/home/a0909007892/javaweb/src/main/java/jpa/entity/Person.java
 /home/a0909007892/javaweb/src/main/java/report/DailyReport.java
 /home/a0909007892/javaweb/src/main/java/servlet/CoffeeSessionInvalidateServlet.java
 /home/a0909007892/javaweb/src/main/java/upload/UploadServlet.java
