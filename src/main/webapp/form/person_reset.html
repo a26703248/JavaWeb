@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/purecss@2.1.0/build/pure-min.css"
+  >
+  <meta charset="UTF-8">
+  <title>Person Rest</title>
+  <link
+    rel="stylesheet"
+    href="/javaweb/css/style.css"
+  >
+  <script>
+    // 同源政策問題
+    // example:
+    // 將網站頁面下載下來後在打開繼續操作請求會發生此問題
+    // 為了防止將 html 修改後繼續對伺服器做請求
+    const domain = "http://localhost:8080"
+    // 取得單筆資料
+    function getPerson(id) {
+      console.log(id);
+      var url = domain + "/javaweb/rest/person/";
+      var method = { method: "GET" };
+      fetch(url, method)
+        .then((resp) => {
+          if (resp.status == 200) {
+            return resp.text();
+          } else {
+            alert("無法取的資料");
+            console.log(resp.status);
+          }
+        })
+        .then((data) => {
+          console.log(data);
+          var person = JSON.parse(data);
+          document.getElementById("id").value = person.id;
+          document.getElementById("name").value = person.id;
+          document.getElementById("age").value = person.id;
+          document.getElementById("person_form").setAttribute("onsubmit()", "return updatePerson()");
+          changeSubmit();
+        })
+
+    };
+
+    // 修改資料
+    function updatePerson() {
+      var id = document.getElementById("id").value;
+      var name = document.getElementById("name").value;
+      var age = document.getElementById("age").value;
+
+      let data = `name=${name}&age=${name}`;
+      let url = domain + "/javaweb/rest/person/" + id;
+      var method = { method: "POST", body: JSON.stringify(data), headers: { 'content-type': "application/x-www-form-urlencoded" } }
+
+      // fetch version(html5)
+      fetch(url, method)
+        .then((resp) => {
+          if (resp.status == 200) {
+            document.getElementById("person_list").reset();
+            document.getElementById("person_form").setAttribute("onsubmit()", "return addPerson()");
+            initStatus();
+          } else {
+            alert("修改失敗" + resp.status)
+            console.log(resp);
+          }
+        })
+
+    };
+
+    // 新增資料
+    function addPerson() {
+      var name = document.getElementById("name").value;
+      var age = document.getElementById("age").value;
+      let data = `name=${name}&age=${name}`;
+      let url = domain + "/javaweb/rest/person/";
+      var method = { method: "POST", "body": JSON.stringify(data), headers: { 'content-type': "application/x-www-form-urlencoded" } }
+      // fetch version(html5)
+      fetch(url, method)
+        .then((resp) => {
+          if (resp.status == 200) {
+            initStatus();
+          } else {
+            alert("新增失敗" + resp.status)
+            console.log(resp);
+          }
+        })
+
+    };
+
+    // 刪除資料
+    function deletePerson() {
+      var id = document.getElementById("id").value;
+      var url = domain + "/javaweb/rest/person/" + id;
+      var method = { method: "DELETE" };
+      fetch(url, method)
+        .then((resp) => {
+          if (resp.status == 200) {
+            initStatus();
+          } else {
+            alert("無法取刪除資料");
+            console.log(resp.status);
+          }
+        })
+        .then((data) => {
+          console.log(data);
+          var person = JSON.parse(data);
+          document.getElementById("id").value = person.id;
+          document.getElementById("name").value = person.id;
+          document.getElementById("age").value = person.id;
+          document.getElementById("person_form").setAttribute("onsubmit()", "return addPerson()");
+          document.getElementById("add_button").disabled = false;
+          document.getElementById("update_button").disabled = true;
+          document.getElementById("delete_button").disabled = true;
+        })
+
+    };
+
+    // 查詢所有資料
+    function queryPerson() {
+      let url = domain + "/javaweb/rest/person/";
+      let method = { method: "GET" };
+      fetch(url, method)
+        .then((resp) => {
+          return resp.text();
+        })
+        .then((data) => {
+          console.log(data);
+          console.log(typeof (data));
+          // 因為 data 目前是 string 型態
+          // 所以要利用 JSON.parse(data) 轉為 Json 物件陣列以利分析
+          // document.getElementById("person_list").innerText = data;
+          var array = JSON.parse(data);
+          console.log(data)
+          let person_list = document.getElementById("person_list");
+          // 加入筆數
+          document.getElementById('person_count').innerText = array.length;
+          // for (var i = 0; i < array.length; i++) {
+          //   var row = '<tr><td>' + array[i].id + '</td><td>' + array[i].name + '</td><td>' + array[i].age + '</td></tr>';
+          //   document.getElementById('person_list').insertAdjacentHTML('afterend', row); // 最新的一筆在最上面
+          //document.getElementById('person_list').insertAdjacentHTML('beforeend', row); // 最新的一筆在最下面
+          // }
+          array.forEach((e, i) => {
+            person_list.innerHTML += `<tr onclick="return getPerson(${array[i].id})" style="cursor: pointer" title="按我一下可以選擇">
+              <td>${e.Id}</td>
+              <td>${e.name}</td>
+              <td>${e.age}</td>
+            </tr>`
+          })
+        });
+
+    };
+
+    // 交換 submit function
+    function changeSubmit() {
+      document.getElementById("add_button").disabled = true;
+      document.getElementById("update_button").disabled = false;
+      document.getElementById("delete_button").disabled = false;
+    }
+
+    // 初始狀態
+    function initStatus() {
+      document.getElementById("add_button").disabled = false;
+      document.getElementById("update_button").disabled = true;
+      document.getElementById("delete_button").disabled = true;
+      queryPerson()
+    }
+
+    // 頁面載入完成後要做的事
+    window.onload = (e) => {
+      console.log("Page Loaded");
+      initStatus();
+      queryPerson();
+      // 註冊 delete_button 事件
+      document.getElementById("delete_button").onclick = deletePerson();
+    };
+
+  </script>
+</head>
+
+<body style="padding: 10px">
+  <h2>本範例是一個 Person Rest SPA 的應用</h2>
+  <ul>
+    <li>單筆查詢: GET http://localhost:8080/javaweb/rest/person/4</li>
+    <li>多筆查詢: GET http://localhost:8080/javaweb/rest/person/</li>
+    <li>新增: POST http://localhost:8080/javaweb/rest/person/</li>
+    <li>修改: PUT http://localhost:8080/javaweb/rest/person/2</li>
+    <li>刪除: DELETE http://localhost:8080/javaweb/rest/person/3</li>
+  </ul>
+
+  <table width="100%">
+    <tr>
+      <!-- Person 表單 -->
+      <td
+        valign="top"
+        width="50%"
+      >
+        <form
+          id="person_form"
+          class="pure-form"
+          onsubmit="return addPerson()"
+        >
+          <fieldset>
+            <legend>Person 表單</legend>
+            序號:<input
+              type="text"
+              id="id"
+              name="id"
+              readonly="readonly"
+            >
+            姓名:<input
+              type="text"
+              id="name"
+              name="name"
+              required="true"
+            >
+            年齡:<input
+              type="number"
+              id="age"
+              name="age"
+              required="true"
+            >
+            <button
+              id="add_button"
+              class="button-success pure-button"
+              type="submit"
+            >新增</button>
+            <button
+              id="update_button"
+              class="button-warning pure-button"
+              type="submit"
+            >修改</button>
+            <button
+              id="delete_button"
+              class="button-error pure-button"
+              type="submit"
+            >刪除</button>
+          </fieldset>
+        </form>
+      </td>
+      <!-- Person 列表 -->
+      <td
+        valign="top"
+        width="50%"
+      >
+        <form class="pure-form">
+          <fieldset>
+            <legend>Person 列表( <span id="person_count"></span> 筆 )</legend>
+            <table class="pure-table pure-table-bordered">
+              <thead>
+                <tr>
+                  <td>序號</td>
+                  <td>姓名</td>
+                  <td>年齡</td>
+                </tr>
+              </thead>
+              <tbody id="person_list">
+              </tbody>
+            </table>
+          </fieldset>
+        </form>
+      </td>
+    </tr>
+  </table>
+
+</body>
+
+</html>

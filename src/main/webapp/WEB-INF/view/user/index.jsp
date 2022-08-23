@@ -38,6 +38,29 @@
     name="viewport"
     content="width=device-width, initial-scale=1"
   >
+  <script>
+    function deleteUserById(id) {
+      if (confirm('是否要刪除 id:' + id + ' 的資料 ?')) {
+        window.location.href = '${ pageContext.request.contextPath }/user/delete?id=' + id;
+      }
+    }
+
+    function checkUserForm() {
+      var username = window.document.getElementById('username').value;
+      var password = window.document.getElementById('password').value;
+      if (username == '') {
+        alert('使用者名稱不可空白!')
+        window.document.getElementById('username').focus();
+        return false;
+      }
+      if (password == '') {
+        alert('使用者密碼不可空白!')
+        window.document.getElementById('password').focus();
+        return false;
+      }
+      return true;
+    }
+  </script>
 </head>
 
 <body style="padding: 15px">
@@ -103,7 +126,6 @@
             </tr>
           </c:forEach>
         </tbody>
-
       </table>
     </fieldset>
   </form>
